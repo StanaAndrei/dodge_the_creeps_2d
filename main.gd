@@ -8,9 +8,14 @@ func _ready() -> void:
 	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+var time_accumulator := 0.0
+const CHANGE_INTERVAL := 1.0  # Change color every 1 second
+
 func _process(delta: float) -> void:
-	pass
+	time_accumulator += delta
+	if time_accumulator >= CHANGE_INTERVAL:
+		time_accumulator = 0.0
+		$ColorRect.color = Color(randf(), randf(), randf())
 
 
 func _on_mob_timer_timeout():
